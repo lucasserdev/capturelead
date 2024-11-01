@@ -10,6 +10,7 @@ class Leads {
     private $descricao;
     private $origem;
     private $dataCriacao;
+    private $statusContato;
 
     public function getId() {
         return $this->id;
@@ -50,7 +51,7 @@ class Leads {
         return $this->descricao;
     }
     public function setDescricao($descricao) {
-        $this->descricao = $descricao;
+        $this->descricao = trim($descricao);
     }
 
     public function getOrigem() {
@@ -67,6 +68,13 @@ class Leads {
 
     public function setDataCriacao($dataCriacao) {
         $this->dataCriacao = $dataCriacao;
+    }
+
+    public function getStatusContato() {
+        return $this->statusContato;
+    }
+    public function setStatusContato($status) {
+        $this->statusContato = $status;
     }
 }
 

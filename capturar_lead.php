@@ -1,4 +1,5 @@
 <?php 
+session_start();
 require 'config.php';
 require_once 'src/dao/LeadsDaoMySql.php';
 
@@ -11,20 +12,33 @@ $celular = filter_input(INPUT_POST, 'celular');
 $descricao = filter_input(INPUT_POST, 'descricao');
 $origem = filter_input(INPUT_POST, 'origem');
 
+$existe = false;
+
 if($nome && $sobrenome && $email && $celular && $descricao && $origem) {
 
-    $novoLead = new Leads();
-    $novoLead->setNome($nome);
-    $novoLead->setSobrenome($sobrenome);
-    $novoLead->setEmail($email);
-    $novoLead->setCelular($celular);
-    $novoLead->setDescricao($descricao);
-    $novoLead->setOrigem($origem);
+    $existe = $leadsDao->FindByEmail($email);
 
-    $leadsDao->add($novoLead);
+    if($existe === false) {
 
-    header("Location: obrigado.php");
-    exit;
+        $_SESSION['email'] = 'Esse email já está cadastrado';
+        header("Location: index.php");
+        exit;
+    } else {
+
+        $novoLead = new Leads();
+        $novoLead->setNome($nome);
+        $novoLead->setSobrenome($sobrenome);
+        $novoLead->setEmail($email);
+        $novoLead->setCelular($celular);
+        $novoLead->setDescricao($descricao);
+        $novoLead->setOrigem($origem);
+
+        $leadsDao->add($novoLead);
+
+        header("Location: obrigado.php");
+        exit;
+
+    } 
 
 }
 
