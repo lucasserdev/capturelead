@@ -6,6 +6,12 @@ require_once 'src/dao/LeadsDaoMySql.php';
 $leadsDao = new LeadsDaoMysql($pdo);
 $lista = $leadsDao->FindAll();
 
+if($_SESSION['papel'] != 'admin') {
+
+    header("Location: login.php");
+    exit;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -17,6 +23,7 @@ $lista = $leadsDao->FindAll();
     <title>Document</title>
 </head>
 <body>
+    <a href="sair.php">Sair</a>
     <h1>TABELA DE LEADS</h1>
     <a href="index.php">VISUALIZAR SUA LANDING PAGE</a>
     <table border="1" width="100%">
