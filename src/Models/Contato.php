@@ -1,6 +1,6 @@
 <?php
 
-class Leads {
+class Contato {
 
     private $id;
     private $nome;
@@ -10,7 +10,6 @@ class Leads {
     private $descricao;
     private $origem;
     private $dataCriacao;
-    private $statusLead;
 
     public function getId() {
         return $this->id;
@@ -70,20 +69,13 @@ class Leads {
         $this->dataCriacao = $dataCriacao;
     }
 
-    public function getStatusLead() {
-        return $this->statusLead;
-    }
-    public function setStatusLead($status) {
-        $this->statusLead = $status;
-    }
 }
 
-interface LeadsDao {
+interface ContatoDao {
 
-    public function add(Leads $l);
+    public function add(Contato $c);
     public function FindAll();
     public function FindById($id);
-    public function FindByEmail($email);
-    public function update(Leads $l);
+    public function update(Contato $c);
     public function delete($id);
 }

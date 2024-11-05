@@ -25,8 +25,7 @@ if($_SESSION['papel'] != 'admin') {
 <body>
     <a href="sair.php">Sair</a>
     <h1>TABELA DE LEADS</h1>
-    <a href="index.php">VISUALIZAR SUA LANDING PAGE</a> <br>
-    <a href="listar_contatos">VISULIZAR PAGINA DE CONTATOS</a>
+    <a href="index.php">VISUALIZAR SUA LANDING PAGE</a>
     <table border="1" width="100%">
         <tr>
             <th>Status / Converter</th>

@@ -31,7 +31,7 @@ class LeadsDaoMysql implements LeadsDao {
                 $l->setDescricao($item['descricao']);
                 $l->setOrigem($item['origem']);
                 $l->setDataCriacao($item['data_criacao']);
-                $l->setStatusContato($item['status_contato']);
+                $l->setStatusLead($item['status_contato']);
 
                 $array[] = $l;
             }
@@ -55,13 +55,9 @@ class LeadsDaoMysql implements LeadsDao {
             $l->setDescricao($data['descricao']);
             $l->setOrigem($data['origem']);
             $l->setDataCriacao($data['data_criacao']);
-            $l->setStatusContato($data['status_contato']);
+            $l->setStatusLead($data['status_contato']);
 
             return $l;   
-        } else {
-
-            header("Location: listar_leads.php");
-            exit;
         }
     }
 
