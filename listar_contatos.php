@@ -1,10 +1,10 @@
 <?php
 session_start();
 require 'config.php';
-require_once 'src/dao/LeadsDaoMySql.php';
+require_once 'src/dao/ContatoDaoMySql.php';
 
-$leadsDao = new LeadsDaoMysql($pdo);
-$lista = $leadsDao->FindAll();
+$contatoDao = new ContatoDaoMysql($pdo);
+$lista = $contatoDao->FindAll();
 
 if($_SESSION['papel'] != 'admin') {
 
@@ -24,12 +24,11 @@ if($_SESSION['papel'] != 'admin') {
 </head>
 <body>
     <a href="sair.php">Sair</a>
-    <h1>TABELA DE LEADS</h1>
+    <h1>TABELA DE CONTATOS</h1>
     <a href="index.php">VISUALIZAR SUA LANDING PAGE</a>
     <table border="1" width="100%">
         <tr>
-            <th>Status / Converter</th>
-            <th>Cod Lead</th>
+            <th>Cod Contato</th>
             <th>Nome</th>
             <th>Sobrenome</th>
             <th>Celular</th>
@@ -40,27 +39,20 @@ if($_SESSION['papel'] != 'admin') {
             <th>AÇÕES</th>
         </tr>
 
-        <?php foreach($lista as $lead): ?>
+        <?php foreach($lista as $contato): ?>
             <tr>
+                
+                <td><?= $contato->getId(); ?> </td>
+                <td><?= $contato->getNome() ?> </td>
+                <td><?= $contato->getSobrenome(); ?> </td>
+                <td><?= $contato->getCelular(); ?> </td>
+                <td><?= $contato->getEmail(); ?> </td>
+                <td><?= $contato->getDescricao(); ?> </td>
+                <td><?= $contato->getOrigem(); ?> </td>
+                <td><?= $contato->getDataCriacao(); ?> </td>
                 <td>
-                    <?php if($lead->getStatusLead() === 'pendente'): ?>
-                        <a href="check.php?id=<?= $lead->getId(); ?>" style="color: #333;" onclick="return confirm('Tem certeza que já entrou em contato com <?= $lead->getNome(); ?>')"><i class="fa-solid fa-square-check"></i></a>
-                    <?php else: ?>
-                        <a href="discheck.php?id=<?= $lead->getId(); ?>" style="color: green;" onclick="return confirm('Tem certeza que deseja deixar o lead com status pendente?')"><i class="fa-solid fa-square-check"></i></a>
-                    <?php endif; ?>
-                    <a href="converter.php?id= <?= $lead->getId(); ?>"><i class="fa-solid fa-people-arrows"></i></a>
-                </td>
-                <td><?= $lead->getId(); ?> </td>
-                <td><?= $lead->getNome() ?> </td>
-                <td><?= $lead->getSobrenome(); ?> </td>
-                <td><?= $lead->getCelular(); ?> </td>
-                <td><?= $lead->getEmail(); ?> </td>
-                <td><?= $lead->getDescricao(); ?> </td>
-                <td><?= $lead->getOrigem(); ?> </td>
-                <td><?= $lead->getDataCriacao(); ?> </td>
-                <td>
-                    <a href="editar.php?id=<?= $lead->getId(); ?> ">[ Editar ]</a>
-                    <a href="excluir.php?id=<?= $lead->getId(); ?> " onclick="return confirm('Tem certeza que deseja excluir esse lead?')">[ Excluir ]</a>
+                    <a href="editar_contato.php?id=<?= $contato->getId(); ?> ">[ Editar ]</a>
+                    <a href="excluir_contato.php?id=<?= $contato->getId(); ?> " onclick="return confirm('Tem certeza que deseja excluir esse contato?')">[ Excluir ]</a>
                 </td>
             </tr>
         <?php endforeach; ?>

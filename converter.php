@@ -12,8 +12,8 @@ $id = filter_input(INPUT_GET, 'id');
 $newContato = $leadsDao->FindById($id);
 
 if($newContato) {
-    $nome = $newContato->getId();
-    $sobrenome = $newContato->getNome();
+    $nome = $newContato->getNome();
+    $sobrenome = $newContato->getSobrenome();
     $celular = $newContato->getCelular();
     $email = $newContato->getEmail();
     $descricao = $newContato->getDescricao();

@@ -26,7 +26,7 @@ if($_SESSION['papel'] != 'admin') {
     <a href="sair.php">Sair</a>
     <h1>TABELA DE LEADS</h1>
     <a href="index.php">VISUALIZAR SUA LANDING PAGE</a> <br>
-    <a href="listar_contatos">VISULIZAR PAGINA DE CONTATOS</a>
+    <a href="listar_contatos.php">VISULIZAR PAGINA DE CONTATOS</a>
     <table border="1" width="100%">
         <tr>
             <th>Status / Converter</th>
@@ -60,8 +60,8 @@ if($_SESSION['papel'] != 'admin') {
                 <td><?= $lead->getOrigem(); ?> </td>
                 <td><?= $lead->getDataCriacao(); ?> </td>
                 <td>
-                    <a href="editar.php?id=<?= $lead->getId(); ?> ">[ Editar ]</a>
-                    <a href="excluir.php?id=<?= $lead->getId(); ?> " onclick="return confirm('Tem certeza que deseja excluir esse lead?')">[ Excluir ]</a>
+                    <a href="editar_lead.php?id=<?= $lead->getId(); ?> ">[ Editar ]</a>
+                    <a href="excluir_lead.php?id=<?= $lead->getId(); ?> " onclick="return confirm('Tem certeza que deseja excluir esse lead?')">[ Excluir ]</a>
                 </td>
             </tr>
         <?php endforeach; ?>
