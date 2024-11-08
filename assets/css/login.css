@@ -1,0 +1,23 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #454D6B;
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container_form {
+    background-color: #353B50;
+    width: 400px;
+    height: 400px;
+    padding: 20px;
+    color: white;
+}
